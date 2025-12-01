@@ -61,7 +61,8 @@
           "builder": "@angular/build:dev-server",
           "options": {
             "ssl": true,
-            "sslCert": ""
+            "sslKey": "ssl/localhost.key",
+            "sslCert": "ssl/localhost.crt"
           },
           "configurations": {
             "production": {
