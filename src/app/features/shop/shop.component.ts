@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ShopService } from '../../core/servuces/shop.service';
+import { ShopService } from '../../core/services/shop.service';
 import { Product } from '../../shared/models/products';
-import { MatCard } from '@angular/material/card';
+import { ProductItemComponent } from './product-item/product-item.component';
 
 @Component({
   selector: 'app-shop',
-  imports: [ MatCard],
+  imports: [ProductItemComponent],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private shopSrv: ShopService) {}
+  constructor(private shopSrv: ShopService) { }
 
   ngOnInit(): void {
+    this.initializeShop();
+  }
+
+  initializeShop() {
+    this.shopSrv.getBrands();
+    this.shopSrv.getTypes();
     this.shopSrv.getProducts().subscribe(
       {
         next: response => this.products = response.data,
