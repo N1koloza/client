@@ -54,7 +54,10 @@ export class ShopComponent implements OnInit {
           console.log(result);
           this.selectedBrands = result.selectedBrands;
           this.selectedTypes = result.selectedTypes;
-          // TODO: apply filters 
+          this.shopSrv.getProducts(this.selectedBrands, this.selectedTypes).subscribe({
+            next: response => this.products = response.data,
+            error: error => console.log(error)
+          });
         }
       }
     })
