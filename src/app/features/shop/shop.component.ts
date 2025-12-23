@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ShopService } from '../../core/services/shop.service';
 import { Product } from '../../shared/models/products';
 import { ProductItemComponent } from './product-item/product-item.component';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAnchor } from "@angular/material/button";
 import { MatIcon } from '@angular/material/icon';
@@ -12,6 +12,7 @@ import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angula
 import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Pagination } from '../../shared/models/pagination';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-shop',
@@ -23,8 +24,8 @@ import { Pagination } from '../../shared/models/pagination';
     MatSelectionList,
     MatListOption,
     MatMenuTrigger,
-    MatPaginator
-  ],
+    MatPaginator,
+    FormsModule, MatIconButton],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
@@ -66,8 +67,7 @@ export class ShopComponent implements OnInit {
     this.shopSrv.getProducts(this.shopParams).subscribe(
       {
         next: response => this.products = response,
-        error: error => console.log(error),
-        complete: () => console.log('complete.')
+        error: error => console.log(error)
       }
     )
   }
@@ -85,6 +85,11 @@ export class ShopComponent implements OnInit {
       this.shopParams.pageNumber = 1;
       this.getProducts();
     }
+  }
+
+  onSearchChange(){
+    this.shopParams.pageNumber = 1;
+    this.getProducts();
   }
 
   openFiltersDialog() {
