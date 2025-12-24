@@ -1,1 +1,103 @@
-<h1 class="text-2xl"> {{product?.name}}</h1>
+<!-- @if (product) {
+<section class="py-8">
+    <div class="max-w-screen-2xl px-4 mx-auto">
+        <div class="grid grid-cols-2 gap-8">
+            <div class="max-w-xl mx-auto">
+                <img src="{{ product.pictureUrl }}" alt="image of {{ product.name }}" class="max-w-md rounded-lg" />
+            </div>
+
+
+            <div>
+                <h1 class="text-2xl font-semibold text-gray-900">{{ product.name }}</h1>
+                <div class="mt-4 items-center gap-4 flex">
+                    <p class="text-3xl font-extrabold text-gray-900">
+                        {{product.price | currency}}
+                    </p>
+                </div>
+                <div class="flex gap-4 mt-6">
+                    <button mat-flat-button class="match-input-height">
+                        <mat-icon>shopping_cart</mat-icon>
+                        Add to cart
+                    </button>
+
+                    <mat-form-field appearance="outline" class="flex">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput type="number">
+                    </mat-form-field>
+                </div>
+
+                <mat-divider></mat-divider>
+                <div class="mt-6">
+                    <h2 class="text-lg font-semibold mb-2">Description</h2>
+                    <p class="text-gray-700">{{ product.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+} -->
+
+@if (product) {
+<section class="py-8">
+  <div class="max-w-screen-2xl px-4 mx-auto">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- IMAGE -->
+      <div class="max-w-xl mx-auto">
+        <img 
+          [src]="product.pictureUrl || 'assets/placeholder.png'"
+          [alt]="'image of ' + product.name"
+          class="w-full max-w-md rounded-lg object-cover shadow-sm"
+        />
+      </div>
+
+      <!-- DETAILS -->
+      <div>
+
+        <!-- NAME -->
+        <h1 class="text-2xl font-semibold text-gray-900">
+          {{ product.name }}
+        </h1>
+
+        <!-- PRICE -->
+        <div class="mt-4 flex items-center gap-4">
+          <p class="text-3xl font-extrabold text-gray-900">
+            {{ product.price | currency:'EUR':'symbol' }}
+          </p>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex gap-4 mt-6">
+
+          <!-- ADD TO CART -->
+          <button mat-flat-button color="primary" aria-label="Add product to cart">
+            <mat-icon>shopping_cart</mat-icon>
+            Add to cart
+          </button>
+
+          <!-- QUANTITY -->
+          <mat-form-field appearance="outline" class="w-32">
+            <mat-label>Quantity</mat-label>
+            <!-- <input matInput type="number" [(ngModel)]="quantity" min="1"> -->
+            <input matInput type="number" min="0">
+          </mat-form-field>
+
+        </div>
+
+        <!-- DIVIDER -->
+        <mat-divider class="my-6"></mat-divider>
+
+        <!-- DESCRIPTION -->
+        <div>
+          <h2 class="text-lg font-semibold mb-2">Description</h2>
+          <p class="text-gray-700 leading-relaxed">
+            {{ product.description }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+}
