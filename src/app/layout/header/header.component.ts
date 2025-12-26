@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterLink, RouterLinkActive } from "@angular/router";
- 
- 
+import { BusyService } from '../../core/services/busy.service';
+
+
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatBadgeModule, MatButtonModule, MatIconModule, RouterLink, RouterLinkActive],
+  imports: [MatBadgeModule, MatButtonModule, MatIconModule, RouterLink, RouterLinkActive, MatProgressBarModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
- 
+  busySrv = inject(BusyService);
 }
